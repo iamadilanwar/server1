@@ -4,7 +4,7 @@ const CardController = require('../Controllers/Card.Controller')
 const { verifyAccessToken } = require('../helpers/jwt_helper')
 
 //Main Card Routes
-router.get('/',verifyAccessToken, CardController.allSubCards)
+router.get('/', CardController.allSubCards)
 
 //SingleCardRoutes
 // router.get('/:id/all',verifyAccessToken, SingleCardConstroller.list)
