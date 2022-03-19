@@ -4,7 +4,7 @@ const createError = require('http-errors')
 require('dotenv').config()
 require('./helpers/init_mongodb')
 require('./helpers/init_redis')
-//jdvweivchiwcw
+
 const AuthRoute = require('./Routes/Auth.route')
 const UserRoute = require('./Routes/User.route')
 const CardRoute = require('./Routes/Card.route')

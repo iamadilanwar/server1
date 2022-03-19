@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "",
+  "author": "adilanwar.me",
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
