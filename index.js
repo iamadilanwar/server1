@@ -35,6 +35,7 @@ app.use((err, req, res, next) => {
     },
   })
 })
+app.get('/', (req, res) => { res.send('Hello World!') })
 
 const PORT = process.env.PORT || 3000
 
