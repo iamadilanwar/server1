@@ -18,6 +18,7 @@ module.exports = {
       next(error);
     }
   },
+
   single: async (req, res, next) => {
     try {
       const result = await Card.findById({ _id: req.params.id });
@@ -51,14 +52,22 @@ module.exports = {
 
   allSubCards: async (req, res, next) => {
     try {
-      const result = await Card.find({}, { cardData: 1 });
-
-      const myArrayFiltered = result.filter((el) => {
-        return el.cardData;
-      });
-      const cardData = myArrayFiltered;
-      console.log(cardData);
-      res.status(200).json({ total: cardData.length, cardData });
+      console.log(req.params.key !== undefined ? req.params.key : "undefined");
+      const result = await Card.find(
+        req.params.key !== undefined
+          ? {
+              $or: [
+                { "cardData.title": { $regex: req.params.key, $options: "i" } },
+                { "cardData.year": { $regex: req.params.key, $options: "i" } },
+                { "cardData.board": { $regex: req.params.key, $options: "i" } },
+              ],
+            }
+          : {},
+        {
+          cardData: 1,
+        }
+      );
+      res.status(200).json({ total: result.length, result });
       res.send(result);
     } catch (error) {
       console.log(error);

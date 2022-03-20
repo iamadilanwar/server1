@@ -40,4 +40,3 @@ const FactSchema = new Schema(
 
 const Fact = mongoose.model("fact", FactSchema);
 module.exports = Fact;
-module.exports = TodaysFact;

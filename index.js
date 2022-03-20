@@ -10,17 +10,20 @@ const UserRoute = require('./Routes/User.route')
 const CardRoute = require('./Routes/Card.route')
 const SubCardsRoute = require('./Routes/SubCards.route')
 const HistoryRoute = require('./Routes/History.route')
+const MobileRoute = require('./Routes/Mobile.route')
 
 const app = express()
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+app.use('/mobile', MobileRoute)
 app.use('/auth', AuthRoute)
 app.use('/user', UserRoute)
 app.use('/card', CardRoute)
 app.use('/allSubCards', SubCardsRoute)
 app.use('/history', HistoryRoute)
+
 
 app.use(async (req, res, next) => {
   next(createError.NotFound())
