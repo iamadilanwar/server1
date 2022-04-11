@@ -45,7 +45,7 @@ module.exports = {
       const accessToken = await signAccessToken(user._id.toString())
       const refreshToken = await signRefreshToken(user._id.toString())
 
-      res.send({ accessToken, refreshToken })
+      res.send({ accessToken, refreshToken , user})
     } catch (error) {
       if (error.isJoi === true)
         return next(createError.BadRequest('Invalid Username/Password'))
