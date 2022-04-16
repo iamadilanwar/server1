@@ -3,8 +3,8 @@ const router = express.Router();
 const FileController = require("../Controllers/File.Controller");
 const { verifyAccessToken } = require("../helpers/jwt_helper");
 const multer = require("multer");
-let fs = require("fs");
-let dir = "./uploads";
+let fs = require('fs');
+let dir = './uploads';
 
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir);
