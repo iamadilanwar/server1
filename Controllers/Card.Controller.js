@@ -1,4 +1,5 @@
-const Card = require("../Models/Card.model");
+const {Card, SubCard} = require("../Models/Card.model");
+// const SubCard = require("../Models/Card.model");
 module.exports = {
   create: async (req, res, next) => {
     try {
@@ -13,6 +14,7 @@ module.exports = {
   list: async (req, res, next) => {
     try {
       const result = await Card.find();
+      console.log(result)
       res.send(result);
     } catch (error) {
       next(error);
@@ -41,6 +43,7 @@ module.exports = {
       next(error);
     }
   },
+  
   delete: async (req, res, next) => {
     try {
       const result = await Card.findOneAndRemove({ _id: req.params.id });
@@ -52,9 +55,8 @@ module.exports = {
 
   allSubCards: async (req, res, next) => {
     try {
-      console.log(req.params.key !== undefined ? req.params.key : "undefined");
       const result = await Card.find(
-        req.params.key !== undefined
+        req.params.key != undefined
           ? {
               $or: [
                 { "cardData.title": { $regex: req.params.key, $options: "i" } },
@@ -67,7 +69,16 @@ module.exports = {
           cardData: 1,
         }
       );
-      res.status(200).json({ total: result.length, result });
+      var cardsList = [];
+      for (var i = 0; i < result.length; i++) {
+        var cardObj = {};
+        cardObj = result[i].cardData;
+        if (cardObj.length != 0) {
+          cardsList.push(...cardObj);
+        }
+      }
+      console.log(result)
+      res.status(200).json({ total: cardsList.length, cardsList });
       res.send(result);
     } catch (error) {
       console.log(error);

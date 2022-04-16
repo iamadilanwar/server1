@@ -8,17 +8,6 @@ router.post('/create',verifyAccessToken, CardController.create)
 router.get('/',verifyAccessToken, CardController.list)
 router.get('/:id',verifyAccessToken, CardController.single)
 router.put('/:id',verifyAccessToken, CardController.update)
-router.put('/:id/:id',verifyAccessToken, CardController.update)
 router.delete('/:id',verifyAccessToken, CardController.delete)
-router.get('/allSubCards',verifyAccessToken, CardController.allSubCards)
-
-//SingleCardRoutes
-// router.get('/:id/all',verifyAccessToken, SingleCardConstroller.list)
-// router.get('/:id/:id',verifyAccessToken, SingleCardConstroller.single)
-// router.put('/:id/:id',verifyAccessToken, SingleCardConstroller.update)
-// router.delete('/:id/:id',verifyAccessToken, SingleCardConstroller.delete)
-// router.post('/:id/add',verifyAccessToken, SingleCardConstroller.create)
-
-
 
 module.exports = router

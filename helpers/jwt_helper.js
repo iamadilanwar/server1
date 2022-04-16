@@ -8,7 +8,7 @@ module.exports = {
       const payload = {};
       const secret = process.env.ACCESS_TOKEN_SECRET;
       const options = {
-        expiresIn: "60s",
+        expiresIn: "30d",
         issuer: "adilanwar.me",
         audience: userId,
       };
