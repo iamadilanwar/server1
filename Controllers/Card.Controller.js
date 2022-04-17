@@ -1,4 +1,4 @@
-const {Card, SubCard} = require("../Models/Card.model");
+const Card = require("../Models/Card.model");
 // const SubCard = require("../Models/Card.model");
 module.exports = {
   create: async (req, res, next) => {
