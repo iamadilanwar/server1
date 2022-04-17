@@ -55,7 +55,10 @@ module.exports = {
 
   refreshToken: async (req, res, next) => {
     try {
-      const { refreshToken } = req.body
+      if (!req.headers["authorization"]) return next(createError.Unauthorized());
+      const authHeader = req.headers["authorization"];
+      const bearerToken = authHeader.split(" ");
+      const refreshToken = bearerToken[1];
       console.log(refreshToken)
       if (!refreshToken) throw createError.BadRequest()
       const userId = await verifyRefreshToken(refreshToken)
